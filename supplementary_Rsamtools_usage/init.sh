@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 ## Setup, clear out any existing files
 rm *.sam *.bam *.bai 2> /dev/null
