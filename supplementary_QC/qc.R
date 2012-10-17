@@ -2,6 +2,7 @@
 
 require(ShortRead)
 
+##This needs to change to honour repo name VISG-course-2012 as base dir
 if(getwd() != "/VISG/01.qc") {
   setwd("/VISG/01.qc")
 }
