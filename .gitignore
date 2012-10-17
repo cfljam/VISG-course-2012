@@ -1,4 +1,6 @@
 # History files
 .Rhistory
+##any and all other hidden files
+.*
 emacs/
 popoolation2_1201/
