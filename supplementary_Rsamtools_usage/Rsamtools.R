@@ -106,12 +106,13 @@ abc <- alphabetByCycle(bam[[1]][["seq"]])
 
 
 ## Alphabet plot
-if(PNG) png(file.path(plotDir, "alphabetPlot_50cycles.png"))
-matplot(t(abc[1:4,1:50]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency", main=names(bam)[1])
-if(PNG) dev.off()
-
 if(PNG) png(file.path(plotDir, "alphabetPlot.png"))
 matplot(t(abc[1:4, ]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=names(bam)[1])
+if(PNG) dev.off()
+
+## Alphabet plot, cycles 1:50 only
+if(PNG) png(file.path(plotDir, "alphabetPlot_50cycles.png"))
+matplot(t(abc[1:4,1:50]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency", main=names(bam)[1])
 if(PNG) dev.off()
 
 
@@ -119,12 +120,17 @@ if(PNG) dev.off()
 indPos <- which(bam[[1]][["strand"]] == "+")
 indNeg <- which(bam[[1]][["strand"]] == "-")
 
-## Alphabet frequencies
-abc <- alphabetByCycle(bam[[1]][["seq"]][indPos])
 
-## Visualize alphabet frequencies
+## Visualize alphabet frequencies  Positive and Negative strands
+abc <- alphabetByCycle(bam[[1]][["seq"]][indPos])
 if(PNG) png(file.path(plotDir, "alphabetPlot_pos.png"))
 matplot(t(abc[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "+ strand"))
+if(PNG) dev.off()
+
+## Alphabet frequencies
+abc <- alphabetByCycle(bam[[1]][["seq"]][indNeg])
+if(PNG) png(file.path(plotDir, "alphabetPlot_neg.png"))
+matplot(t(abc[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "- strand"))
 if(PNG) dev.off()
 
 

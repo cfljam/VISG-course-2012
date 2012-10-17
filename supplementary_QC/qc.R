@@ -3,12 +3,14 @@
 require(ShortRead)
 
 ##This needs to change to honour repo name VISG-course-2012 as base dir
-if(getwd() != "/VISG/01.qc") {
-  setwd("/VISG/01.qc")
-}
 
 ## Globals
-basedir   <- "/VISG"
+basedir   <- "/VISG-course-2012"
+
+if(getwd() != file.path(basedir, "supplementary_QC")) {
+  setwd(file.path(basedir, "supplementary_QC"))
+}
+
 path      <- file.path(basedir, "00.raw")
 outdir    <- file.path(basedir, "01.qc")
 fileNames <- dir(path, pattern="fastq$")
