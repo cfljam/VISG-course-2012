@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 ######################################################################
@@ -9,7 +9,7 @@ file aln.sam
 
 
 ######################################################################
-## 2 .sam to bam file conversion (bam files compress more efficiently)
+## 2. sam to bam file conversion (bam files compress more efficiently)
 ######################################################################
 qual=20
 echo "[ sam => bam (minimum mapping quality $qual) ]" >&2 
@@ -49,7 +49,7 @@ samtools view aln.sam  | awk '{print $2}' | head -n 10
 
 
 ######################################################################
-## 7. Code snippet to explore other columns
+## 7. Code snippet to construct commands to explore other columns
 ######################################################################
 for i in {1..11}; 
 do
@@ -95,7 +95,7 @@ samtools idxstats aln_sorted.bam
 
 
 ######################################################################
-## 13. alignment statistics (idxstats)
+## 13. alignment statistics (flagstat)
 ######################################################################
 echo "[ simple stats on a bam file (flagstat) ]" >&2
 samtools flagstat aln_sorted.bam
