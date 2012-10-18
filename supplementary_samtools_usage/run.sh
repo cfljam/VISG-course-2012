@@ -157,17 +157,3 @@ samtools view -c aln_sorted.bam CO_Pool1_contig00004:500-1000
 ######################################################################
 echo "[ SAM directly to a sorted BAM file ]" >&2
 samtools view -bS aln.sam | samtools sort - aln_sorted
-
-
-######################################################################
-## 22. Multiple piping
-######################################################################
-echo "[ SAM directly to a sorted BAM file with no duplicates ]" >&2
-
-#samtools view -bS aln.sam | samtools sort - aln_sorted
-#samtools rmdup -S aln_sorted.bam aln_sorted_unique.bam
-
-#samtools view -bS aln.sam | 
-#samtools sort - - |
-#samtools rmdup -S - aln_sorted_rmdup.bam
-
