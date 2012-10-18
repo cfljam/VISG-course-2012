@@ -34,9 +34,10 @@ else
     ## Run wgsim to randomly generate an illumina paired end dataset
     nreads=2000
     len=70
+    seed=101
     echo "[ wgsim call ]\n" >&2
-    echo "wgsim -N $nreads -1 $len -2 $len pool1.fasta read1.fq read2.fq > snips.txt" >&2
-    wgsim -N $nreads -S 42 -1 $len -2 $len pool1.fasta read1.fq read2.fq > snips.txt
+    echo "wgsim -N $nreads -S $seed -1 $len -2 $len pool1.fasta read1.fq read2.fq > snips.txt" >&2
+    wgsim -N $nreads -S $seed -1 $len -2 $len pool1.fasta read1.fq read2.fq > snips.txt
 
     ## Align using bwa 
     echo "[ bwa index ]" >&2
@@ -47,6 +48,10 @@ else
     bwa aln pool1.fasta read2.fq > aln_sa2.sai 
     echo "[ bwa generate alignment ]" >&2
     bwa sampe pool1.fasta aln_sa1.sai aln_sa2.sai read1.fq read2.fq > ../aln.sam 
+
+    echo "[ snips simulated at positions ]" >&2
+    cat snips.txt
+
     ## change to parent directory
     cd -    
 fi

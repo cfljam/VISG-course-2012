@@ -104,12 +104,12 @@ samtools flagstat aln_sorted.bam
 ######################################################################
 ## 14. Counting matches in a bam file
 ######################################################################
-echo "[ Count matches in aln_sored.bam ]" >&2
+echo "[ Count matches in aln_sorted.bam ]" >&2
 samtools view -c aln_sorted.bam
 
 
 ######################################################################
-## 15. samtools text alignment viewer (requires sorted indexed bam file)
+## 15. samtools text alignment viewer (requires sorted indexed bam)
 ######################################################################
 echo "[ Running text alignment viewer in 5 seconds, type ? in samtools tview for help ]" >&2
 sleep 5
