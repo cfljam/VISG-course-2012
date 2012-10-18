@@ -6,6 +6,6 @@ cd ../supplementary_QC
 
 Rscript ./qc.R > log
 
-echo "[ unit test finished ]\n" >&2
+echo "[ unit test finished ]" >&2
 
 

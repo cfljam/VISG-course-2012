@@ -9,6 +9,6 @@ cd ../supplementary_samtools_usage
 ## Execute bash script
 ./samtools.sh  2> log
 
-echo "[ unit test finished ]\n" >&2
+echo "[ unit test finished ]" >&2
 
 
