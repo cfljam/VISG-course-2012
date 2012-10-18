@@ -120,7 +120,7 @@ samtools tview aln_sorted.bam ../05.reference/pool1.fasta
 ## 16. bam to sam conversion (some tools require sam format)
 ######################################################################
 echo "[ bam => sam ]" >&2
-samtools view -o aln_sorted.sam aln_sorted.bam
+samtools view -o aln_sorted.sam Aln_sorted.bam
 
 
 ######################################################################
@@ -134,14 +134,14 @@ samtools merge pooled1.bam ../11.Samtools_Filter_Pool1/Pool1_Pop[1-8].filtered.b
 ## 18. Filter on specific reference region
 ######################################################################
 echo "[ Printing header of bam file only ]" >&2
-samtools view -H aln.bam
+samtools view -H aln_sorted.bam
 
 
 ######################################################################
 ## 19. Filter on reference CO_Pool1_contig00004, region
 ######################################################################
 echo "[ Filter on reference:CO_Pool1_contig00004, region 500-1000 ]" >&2
-samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | head -n 10
+Samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | head -n 10
 
 
 ######################################################################
@@ -149,7 +149,8 @@ samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | head -n 10
 ######################################################################
 echo "[ How many records in region? ]" >&2
 samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | wc -l
-
+echo "[ using samtools view -c to exract the count ]" >&2
+samtools view -c aln_sorted.bam CO_Pool1_contig00004:500-1000
 
 ######################################################################
 ## 21. Piping samtools commands (doesnt store intermediate files)
