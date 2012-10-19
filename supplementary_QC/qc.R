@@ -11,11 +11,14 @@ if(getwd() != path) {
 
 indir     <- file.path(basedir, "00.raw")
 outdir    <- file.path(basedir, "01.qc")
-fileNames <- dir(path, pattern="fastq$")
+fileNames <- dir(indir, pattern="fastq$")
 suppressWarnings(dir.create(outdir))
 
+## Path to first file
+firstFile <- file.path(indir, fileNames[1])
+
 ## Read in Fastq example
-rfq       <- readFastq(file.path(indir, fileNames[1]), qualityType="Auto")
+rfq       <- readFastq(firstFile, qualityType="Auto")
 
 ## Show method
 print(rfq)
@@ -59,7 +62,6 @@ for(i in names(qaSummary)) {
     cat("...\n\n")
   }
 }
-
 
 ## Generate qa reports for all Fastq files
 for(f in fileNames) {
