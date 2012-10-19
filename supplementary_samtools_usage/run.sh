@@ -149,7 +149,7 @@ Samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | head -n 10
 ######################################################################
 echo "[ How many records in region? ]" >&2
 samtools view aln_sorted.bam CO_Pool1_contig00004:500-1000 | wc -l
-echo "[ using samtools view -c to exract the count ]" >&2
+echo "[ using samtools view -c to extract the count ]" >&2
 samtools view -c aln_sorted.bam CO_Pool1_contig00004:500-1000
 
 ######################################################################
