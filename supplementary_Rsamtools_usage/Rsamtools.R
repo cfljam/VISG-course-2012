@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-## Clear working directory
+## Clear working directory objects
 rm(list=ls())
 
 require(ShortRead)
@@ -36,10 +36,6 @@ dir(pattern="\\.ba[mi]$")
 
 
 ######################################################################
-## 2. Examining the bam file
-######################################################################
-
-######################################################################
 ## 3. What columns are we interested in? See help(BamInput)
 ######################################################################
 what <- scanBamWhat()
@@ -53,7 +49,7 @@ print(ft)
 
 
 ######################################################################
-## 5. Which features are we interested in extracting? -requires an indexed BAM file to exist
+## 5. Which features to extract? -requires an indexed BAM 
 ######################################################################
 which <- GRanges(names(ft), IRanges(1, ft))
 
@@ -80,8 +76,10 @@ sapply(bam, class)
 
 
 ######################################################################
-## 8. Each element of the list corresponds to a range specified by the which argumen
+## 8. Each element of the list corresponds to a range specified by 'which'
 ######################################################################
+names(bam)
+
 for(i in 1:3) {
   cat("[", names(bam)[i], "]\n")
   print(class(bam[[i]]))
@@ -93,11 +91,16 @@ for(i in 1:3) {
 ######################################################################
 ## 9. First bam[[1]] list component
 ######################################################################
-print(names(bam)[1])
+class(bam[[1]])
 
 
 ######################################################################
-## 10. Each component is a list containing the elements specified by the 'what'
+## 2. Examining the bam file
+######################################################################
+
+
+######################################################################
+## 10. Each component is a list containing the elements specified by 'what'
 ######################################################################
 for(j in seq_len(length(bam[[1]]))) {
   cat("[", names(bam[[1]])[j], "list element ]\n")
@@ -135,6 +138,7 @@ print(bam[[1]][["cigar"]][noINDELS])
 ######################################################################
 abc <- alphabetByCycle(bam[[1]][["seq"]])
 
+
 ######################################################################
 ## 16. Printing the first four alphabet cycles
 ######################################################################
@@ -169,6 +173,7 @@ indNeg <- which(bam[[1]][["strand"]] == "-")
 ######################################################################
 abc.P <- alphabetByCycle(bam[[1]][["seq"]][indPos])
 abc.N <- alphabetByCycle(bam[[1]][["seq"]][indNeg])
+
 
 ######################################################################
 ## 21. Visualize alphabet frequencies +/- strands
@@ -225,6 +230,7 @@ PeaksF     <- slice(CovF, 0)
 IRangesR   <- IRanges(start = bam[[1]][["pos"]][indNeg], width=bam[[1]][["qwidth"]][indNeg])
 CovR       <- coverage(IRangesR)
 PeaksR     <- slice(CovR, 0)
+
 
 ######################################################################
 ## 27. Coverage plot +/- strands visualized separately

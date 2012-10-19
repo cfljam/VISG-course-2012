@@ -1,4 +1,4 @@
-#!/usr/bin/echo source me dont execute me
+#!/usr/bin/env echo source() me in R
 
 if(interactive()) {
   PNG         <- FALSE
