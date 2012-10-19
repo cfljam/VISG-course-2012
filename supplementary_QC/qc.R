@@ -24,13 +24,13 @@ print(fileNames)
 ######################################################################
 ## 1. Path to first example Fastq file
 ######################################################################
-firstFile <- file.path(indir, fileNames[1])
+file1 <- file.path(indir, fileNames[1])
 
 
 ######################################################################
 ## 2. Read in Fastq example
 ######################################################################
-rfq       <- readFastq(firstFile, qualityType="Auto")
+rfq       <- readFastq(file1, qualityType="Auto")
 
 
 ######################################################################
