@@ -1,38 +1,31 @@
 #!/usr/bin/env Rscript
 
+## Clear working directory
+rm(list=ls())
+
 require(ShortRead)
 require(Rsamtools)
 require(chipseq)
-
 
 # Getting vignette help
 if(interactive()) vignette("Rsamtools-Overview")
 
 
 # Globals
-if(interactive()) {
-  PNG         <- FALSE
-} else {
-  PNG         <- TRUE
-}
-  
-plotDir       <- "plots"
-suppressWarnings(dir.create(plotDir))
-basedir       <- "~/VISG-course-2012"
-path          <- file.path(basedir, "supplementary_Rsamtools_usage")
+cat("[ Code to source() ]\n")
+cat(readLines("globals.R"), sep="\n")
 
-# Set working directory
-if(getwd() != path) {
-  setwd(path)
-}
-samName       <- dir(path, pattern="\\.sam$")
-fl            <- file.path(path, samName)
-bamDest       <- "aln"
+## source globals code
+source("globals.R")
+
+cat("[ path to bam:",fl, "]\n")
+print(fl)
 
 
 ######################################################################
 ## 1. sam to bam (also sorts and makes an .bai index file) 
 ######################################################################
+bamDest       <- "aln"
 bamName <- asBam(fl, bamDest, overwrite=TRUE)
 
 
@@ -145,7 +138,8 @@ abc <- alphabetByCycle(bam[[1]][["seq"]])
 ######################################################################
 ## 16. Printing the first four alphabet cycles
 ######################################################################
-abc[,1:4]
+print(abc[,1:4])
+
 
 ######################################################################
 ## 17. Post alignment quality: Alphabet plot
