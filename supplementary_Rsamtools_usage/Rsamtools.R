@@ -36,32 +36,32 @@ dir(pattern="\\.ba[mi]$")
 
 
 ######################################################################
-## 3. What columns are we interested in? See help(BamInput)
+## 2. Examining the bam file: w hat columns are we interested in? 
 ######################################################################
-what <- scanBamWhat()
+what <- scanBamWhat() ## See help(scanBam)
 
 
 ######################################################################
-## 4. Retrieving header information in a BAM file
+## 3. Retrieving header information in a BAM file
 ######################################################################
 ft    <- scanBamHeader(bamName)[[1]][["targets"]]
 print(ft)
 
 
 ######################################################################
-## 5. Which features to extract? -requires an indexed BAM 
+## 4. Which features to extract? -requires an indexed BAM 
 ######################################################################
 which <- GRanges(names(ft), IRanges(1, ft))
 
 
 ######################################################################
-##  6. Create a parameter object for scanning BAM files, 
+## 5. Create a parameter object for scanning BAM files, 
 ######################################################################
 param <- ScanBamParam(which=which, what=what)
 
 
 ######################################################################
-## Load sorted BAM file into R
+## 6. Load sorted BAM file into R
 ######################################################################
 bam <- scanBam(bamName, param = param)
 object.size(bam)
@@ -80,23 +80,12 @@ sapply(bam, class)
 ######################################################################
 names(bam)
 
-for(i in 1:3) {
-  cat("[", names(bam)[i], "]\n")
-  print(class(bam[[i]]))
-  print(length(bam[[i]]))
-  print(sapply(bam[[i]], class))
-}
-
-
 ######################################################################
 ## 9. First bam[[1]] list component
 ######################################################################
 class(bam[[1]])
-
-
-######################################################################
-## 2. Examining the bam file
-######################################################################
+length(bam[[1]])
+sapply(bam[[1]], class)
 
 
 ######################################################################
@@ -104,7 +93,7 @@ class(bam[[1]])
 ######################################################################
 for(j in seq_len(length(bam[[1]]))) {
   cat("[", names(bam[[1]])[j], "list element ]\n")
-  print(head(bam[[i]][[j]], n=10))
+  print(head(bam[[1]][[j]], n=10))
   cat("...\n\n")
 }
 
