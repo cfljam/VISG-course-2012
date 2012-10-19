@@ -8,21 +8,20 @@ require(chipseq)
 ## Getting vignette help
 if(interactive()) vignette("Rsamtools-Overview")
 
-
-## Setup
-if(getwd() != "/VISG/03.Rsamtools_usage") {
-  setwd("/VISG/03.Rsamtools_usage")
-}
-
-
 ## Globals
 PNG           <- TRUE
 plotDir       <- "plots"
 
 suppressWarnings(dir.create(plotDir))
 
-basedir       <- "/VISG"
-path <- file.path(basedir, "03.Rsamtools_usage")
+basedir       <- "~/VISG-course-2012"
+path          <- file.path(basedir, "supplementary_Rsamtools_usage")
+
+## Set working directory
+if(getwd() != path) {
+  setwd(path)
+}
+
 samName       <- dir(path, pattern="\\.sam$")
 fl            <- file.path(path, samName)
 bamDest       <- "aln"

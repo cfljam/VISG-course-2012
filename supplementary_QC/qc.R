@@ -2,22 +2,20 @@
 
 require(ShortRead)
 
-##This needs to change to honour repo name VISG-course-2012 as base dir
-
 ## Globals
-basedir   <- "/VISG-course-2012"
-
-if(getwd() != file.path(basedir, "supplementary_QC")) {
-  setwd(file.path(basedir, "supplementary_QC"))
+basedir   <- "~/VISG-course-2012"
+path      <- file.path(basedir, "supplementary_QC")
+if(getwd() != path) {
+  setwd(path)
 }
 
-path      <- file.path(basedir, "00.raw")
+indir     <- file.path(basedir, "00.raw")
 outdir    <- file.path(basedir, "01.qc")
 fileNames <- dir(path, pattern="fastq$")
 suppressWarnings(dir.create(outdir))
 
 ## Read in Fastq example
-rfq <- readFastq(file.path(path, fileNames[1]), qualityType="Auto")
+rfq       <- readFastq(file.path(indir, fileNames[1]), qualityType="Auto")
 
 ## Show method
 print(rfq)
@@ -68,7 +66,7 @@ for(f in fileNames) {
   ## Truncate the ".fastq$" off names
   fdir      <- gsub("\\..+?$", "", f)
   ## Generate a qc object
-  qaSummary <- qa(path, pattern=f, lane=fdir, type="fastq")
+  qaSummary <- qa(indir, pattern=f, lane=fdir, type="fastq")
   ## Generate an html report
   fname     <- report(qaSummary, dest=file.path(outdir, fdir))
   ## Be verbose
