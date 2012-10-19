@@ -21,51 +21,75 @@ print(indir)
 print(fileNames)
 
 
-## Path to first example Fastq file
+######################################################################
+## 1. Path to first example Fastq file
+######################################################################
 firstFile <- file.path(indir, fileNames[1])
 
 
-## Read in Fastq example
+######################################################################
+## 2. Read in Fastq example
+######################################################################
 rfq       <- readFastq(firstFile, qualityType="Auto")
 
 
-## Show method
+######################################################################
+## 3. Show method
+######################################################################
 print(rfq)
 
 
-## Class of rfq is an instance of ShortReadQ S4 class
+######################################################################
+## 4. Class of rfq is an instance of ShortReadQ S4 class
+######################################################################
 class(rfq)
 
 
-## Print all S4 class slotNames
+######################################################################
+## 5. Print all S4 class slotNames
+######################################################################
 slotNames(rfq)
 
 
-## sread accessor method
+######################################################################
+## 6. sread accessor method
+######################################################################
 sread(rfq)
 
 
-## id accessor method
+######################################################################
+## 7. id accessor method
+######################################################################
 id(rfq)
 
 
-## quality accessor method
+######################################################################
+## 8. quality accessor method
+######################################################################
 quality(rfq)
 
 
-## Run Quality control script
+######################################################################
+## 9. Run Quality control script
+######################################################################
 qaSummary <- qa(rfq, lane="Roche 454")
 
 
-## Create hmtml report
+######################################################################
+## 10. Create hmtml report
+######################################################################
 fname <- report(qaSummary, dest="/tmp")
 
 
-## Open html report 
+######################################################################
+## 11. Open html report 
+######################################################################
 if(interactive()) browseURL(fname)
 
 
-## Snippet to Investigate qaSummary structure
+######################################################################
+## 12. Snippet to Investigate qaSummary structure
+######################################################################
 cat("[ qaSummary structure ]\n")
 for(i in names(qaSummary)) {
   if(i == "perTile") next;
@@ -83,7 +107,9 @@ for(i in names(qaSummary)) {
 }
 
 
-## Generate qa reports for all Fastq files
+######################################################################
+## 13. Generate qa reports for all Fastq files
+######################################################################
 for(f in fileNames) {
   # Truncate the ".fastq$" off names
   fdir      <- gsub("\\..+?$", "", f)
