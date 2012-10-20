@@ -64,6 +64,7 @@ param <- ScanBamParam(which=which, what=what)
 ## 6. Load sorted BAM file into R
 ######################################################################
 bam <- scanBam(bamName, param = param)
+## Large files will hit memory limits e.g. 2^32 for 32-bit architecture
 object.size(bam)
 
 
@@ -168,11 +169,11 @@ abc.N <- alphabetByCycle(bam[[1]][["seq"]][indNeg])
 ## 21. Visualize alphabet frequencies +/- strands
 ######################################################################
 if(PNG) png(file.path(plotDir, "alphabetPlot_pos.png"))
-matplot(t(abc.P[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "+ strand"))
+matplot(t(abc.P[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "(+ strand)"))
 if(PNG) dev.off()
 
 if(PNG) png(file.path(plotDir, "alphabetPlot_neg.png"))
-matplot(t(abc.N[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "- strand"))
+matplot(t(abc.N[1:4,]), type="l", lty=1, lwd=1, ylab="Nuclotide frequency",  main=paste(names(bam)[1], "(- strand)"))
 if(PNG) dev.off()
 
 
@@ -185,13 +186,20 @@ fq <- ShortReadQ(bam[[1]][["seq"]], bam[[1]][["qual"]], BStringSet(bam[[1]][["qn
 ######################################################################
 ## 23. qa() report from bam file sequences
 ######################################################################
-qaSummary <- qa(fq, lane="Roche 454")
-perCycle  <- qaSummary[["perCycle"]]
+## QC directly from bam File
+qaSummary <- qa(bamName, type="BAM") ## , lane="Roche 454")
+
+## QC from ShortReadQ object
+qaSummaryR <- qa(fq, lane="Roche 454")
 
 
 ######################################################################
 ## 24. Generate a quality by cycle plot
 ######################################################################
+perCycle  <- qaSummary[["perCycle"]]
+head(perCycle[["baseCall"]])
+head(perCycle[["quality"]])
+
 if(PNG) png(file.path(plotDir, "cycleQuality.png"))
 ShortRead:::.plotCycleQuality(perCycle$quality, main=names(bam)[1])
 if(PNG) dev.off()
