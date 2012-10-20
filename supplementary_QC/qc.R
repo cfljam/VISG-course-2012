@@ -25,7 +25,7 @@ print(fileNames)
 ## 1. Path to first example Fastq file
 ######################################################################
 file1 <- file.path(indir, fileNames[1])
-
+print(file)
 
 ######################################################################
 ## 2. Read in Fastq example
@@ -79,7 +79,7 @@ qaSummary <- qa(rfq, lane="Roche 454")
 ## 10. Create hmtml report
 ######################################################################
 fname <- report(qaSummary, dest="/tmp")
-
+print(fname)
 
 ######################################################################
 ## 11. Open html report 
