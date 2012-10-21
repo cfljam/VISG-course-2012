@@ -221,7 +221,7 @@ if(PNG) dev.off()
 
 
 ######################################################################
-## 26. Coverage plot +/- strands
+## 26. Coverage components for +/- strands
 ######################################################################
 IRangesF   <- IRanges(start = bam[[1]][["pos"]][indPos], width=bam[[1]][["qwidth"]][indPos])
 CovF       <- coverage(IRangesF)
