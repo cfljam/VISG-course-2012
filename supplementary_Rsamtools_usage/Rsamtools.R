@@ -39,7 +39,7 @@ dir(pattern="\\.ba[mi]$")
 ## 2. Examining the bam file: w hat columns are we interested in? 
 ######################################################################
 what <- scanBamWhat() ## See help(scanBam)
-
+print(what)
 
 ######################################################################
 ## 3. Retrieving header information in a BAM file
@@ -52,10 +52,10 @@ print(ft)
 ## 4. Which features to extract? -requires an indexed BAM 
 ######################################################################
 which <- GRanges(names(ft), IRanges(1, ft))
-
+print(which)
 
 ######################################################################
-## 5. Create a parameter object for scanning BAM files, 
+## 5. Create a parameter object for scanning BAM files
 ######################################################################
 param <- ScanBamParam(which=which, what=what)
 
@@ -67,6 +67,9 @@ bam <- scanBam(bamName, param = param)
 ## Large files will hit memory limits e.g. 2^32 for 32-bit architecture
 object.size(bam)
 
+## See help(BamFile), 'yieldSize' argument alters the number of records
+## to yield each time the file is read from using 'scanBam' allowing
+## memory efficient loading
 
 ######################################################################
 ## 7. bam file: class, length, element classes
