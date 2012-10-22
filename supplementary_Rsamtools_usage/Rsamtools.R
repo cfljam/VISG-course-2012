@@ -63,13 +63,28 @@ param <- ScanBamParam(which=which, what=what)
 ######################################################################
 ## 6. Load sorted BAM file into R
 ######################################################################
+
+## Reading in small bam file in one
 bam <- scanBam(bamName, param = param)
 ## Large files will hit memory limits e.g. 2^32 for 32-bit architecture
 object.size(bam)
 
+
+######################################################################
+## 6A. Example iterating over an entire BAM file for yield=1000 records
+######################################################################
+
 ## See help(BamFile), 'yieldSize' argument alters the number of records
 ## to yield each time the file is read from using 'scanBam' allowing
 ## memory efficient loading
+
+bfl <- open(BamFile(bamName, yieldSize=1000))  
+while (nrec <- length((bam <- scanBam(bfl))[[1]][[1]])) {
+  cat("records:", nrec, "\n")
+  ## Further Processing of object bam...
+}
+close(bfl)
+
 
 ######################################################################
 ## 7. bam file: class, length, element classes
