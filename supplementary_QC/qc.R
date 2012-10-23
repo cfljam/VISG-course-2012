@@ -91,7 +91,6 @@ if(interactive()) browseURL(fname)
 df <- qaSummary[["readQualityScore"]]
 ShortRead:::.plotReadQuality(df[df$type=="read",])
 
-
 ######################################################################
 ## 12. Snippet to Investigate qaSummary structure
 ######################################################################
