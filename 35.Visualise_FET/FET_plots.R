@@ -4,8 +4,18 @@
 require("reshape2")
 require("ggplot2")
 
+
 ## Create FET names
 x             <- t(outer(1:6, 2:7, paste, sep="."))
+
+## Printing outer product
+print(x)
+## Lower diagnonal (including diagonal)
+print(upper.tri(x))
+
+## Subset upper diagonal
+print(x[!upper.tri(x)])
+
 FETnames      <- paste("FET_", x[!upper.tri(x)], sep="")
 my_col_names  <- c("reference_contig","position","N_SNPs","fraction","avg_minimum", FETnames)
 measure_vars  <- my_col_names[6:18]
