@@ -78,13 +78,6 @@ object.size(bam)
 ## to yield each time the file is read from using 'scanBam' allowing
 ## memory efficient loading
 
-bfl <- open(BamFile(bamName, yieldSize=1000))  
-while (nrec <- length((bam <- scanBam(bfl))[[1]][[1]])) {
-  cat("records:", nrec, "\n")
-  ## Further Processing of object bam...
-}
-close(bfl)
-
 
 ######################################################################
 ## 7. bam file: class, length, element classes
