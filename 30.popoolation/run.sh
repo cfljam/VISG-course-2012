@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ## Convert mpileup to sync with popoolation
 perl ../popoolation2_1201/mpileup2sync.pl --fastq-type sanger  --input ../20.mpileup/Pool1.mpileup  --output Pool1.sync --min-qual 20
