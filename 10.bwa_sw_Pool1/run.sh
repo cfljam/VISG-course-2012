@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ## Constructing 'bwa bwasw' heuristic Smith-Waterman-like alignment command for long reads
 echo "first check our command line"
