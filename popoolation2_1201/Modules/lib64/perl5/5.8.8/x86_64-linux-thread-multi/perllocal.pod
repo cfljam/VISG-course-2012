@@ -1,0 +1,22 @@
+=head2 Thu Aug 23 04:37:30 2012: C<Module> L<Text::NSP|Text::NSP>
+
+=over 4
+
+=item *
+
+C<installed into: /home/cfljam/bin/popoolation2_1201/Modules/lib/perl5/site_perl/5.8.8>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.25>
+
+=item *
+
+C<EXE_FILES: bin/count.pl bin/statistic.pl bin/utils/kocos.pl bin/utils/rank.pl bin/utils/combig.pl bin/utils/huge-count.pl bin/utils/huge-merge.pl bin/utils/huge-sort.pl bin/utils/huge-split.pl bin/utils/huge-delete.pl bin/utils/count2huge.pl bin/utils/find-compounds.pl bin/utils/kocos-script.sh bin/utils/rank-script.sh bin/utils/combig-script.sh>
+
+=back
+
