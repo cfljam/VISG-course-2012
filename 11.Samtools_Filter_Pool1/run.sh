@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ## Create a sorted bam file filtered with minimum quality of 20 (MAPQ column 5 in sam file) 
 echo "using samtools to filter  sam files"
