@@ -5,7 +5,7 @@ dir=$HOME/VISG-course-2012
 ## Run each bash script
 echo "[ 05 unit test ]" >&2
 cd $dir/05.reference/
-./run.sh
+time ./run.sh
 cd -
 
 echo "[ 10 unit test ]" >&2
