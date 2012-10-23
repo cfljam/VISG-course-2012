@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ## Concatenate bams into Pool1.bam
 samtools cat -o Pool1.bam ../11.Samtools_Filter_Pool1/*.bam
