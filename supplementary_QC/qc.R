@@ -81,10 +81,15 @@ qaSummary <- qa(rfq, lane="Roche 454")
 fname <- report(qaSummary, dest="/tmp")
 print(fname)
 
+
 ######################################################################
 ## 11. Open html report 
 ######################################################################
 if(interactive()) browseURL(fname)
+
+## Run a component of the report (where 'qa' is 'qaSummary' here)
+df <- qaSummary[["readQualityScore"]]
+ShortRead:::.plotReadQuality(df[df$type=="read",])
 
 
 ######################################################################
